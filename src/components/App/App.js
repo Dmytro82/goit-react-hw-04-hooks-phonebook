@@ -1,32 +1,41 @@
 // import React, { Component } from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import Form from '../Form/Form';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
+import useLocalStorage from '../../Hooks/useLocalStorage';
 
 import { Container, Title, ContainerForm, ContactTitle } from './App.styled';
 
+const initiaData = [
+  { id: 'id-01', name: 'GREEN HOUSE (Плай)', number: '0973538467' },
+  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+];
+
 export default function App() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useLocalStorage('contacts', initiaData);
   const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    setContacts(
-      JSON.parse(window.localStorage.getItem('contacts')) ?? [
-        { id: 'id-01', name: 'GREEN HOUSE (Плай)', number: '0973538467' },
-        { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-        { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-        { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-        { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-      ],
-    );
-  }, []);
+  // useEffect(() => {
+  //   setContacts(
+  //     JSON.parse(window.localStorage.getItem('contacts')) ?? [
+  //       { id: 'id-01', name: 'GREEN HOUSE (Плай)', number: '0973538467' },
+  //       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  //       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  //       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  //       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  //     ],
+  //   );
+  // }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
   const repeatСontact = name => {
     const normalizedName = name.toLowerCase();
