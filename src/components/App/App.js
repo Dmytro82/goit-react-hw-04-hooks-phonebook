@@ -9,7 +9,7 @@ import useLocalStorage from '../../Hooks/useLocalStorage';
 
 import { Container, Title, ContainerForm, ContactTitle } from './App.styled';
 
-const initiaData = [
+const initiaData = () => [
   { id: 'id-01', name: 'GREEN HOUSE (Плай)', number: '0973538467' },
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -18,7 +18,7 @@ const initiaData = [
 ];
 
 export default function App() {
-  const [contacts, setContacts] = useLocalStorage('contacts', initiaData);
+  const [contacts, setContacts] = useLocalStorage('contacts', initiaData());
   const [filter, setFilter] = useState('');
 
   // useEffect(() => {
